@@ -1,0 +1,61 @@
+<div class="modal fade" id="insertModal" tabindex="-1" aria-labelledby="insertModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="insertModalLabel">Aggiungi prodotto</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="save()" #f="ngForm" class="form-horizontal has-validator bs5-form fv-plugins-bootstrap5 fv-plugins-framework">
+          <div>
+            <div class="row mb-3">
+              <label for="title" class="col-sm-4 col-form-label">Nome  <sup class="text-danger">* </sup></label>
+              <div class="col-sm-8 fv-plugins-icon-container">
+                <input id="title" name="title" type="text" value="" placeholder="Nome" required class="form-control"
+                [(ngModel)]="product.title" name="name"#name="ngModel">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="category" class="col-sm-4 col-form-label">Categoria</label>
+              <div class="col-sm-8">
+                <input id="category" name="category" type="text" value="" placeholder="Categoria" class="form-control"
+                [(ngModel)]="product.category" name="category" #category="ngModel">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="price" class="col-sm-4 col-form-label">Prezzo <sup class="text-danger">* </sup></label>
+              <div class="col-sm-8">
+                <input id="price" name="price" type="number" value="0" required class="form-control" min="0"
+                [(ngModel)]="product.price" name="price" #price="ngModel">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="description" class="col-sm-4 col-form-label">Descrizione</label>
+              <div class="col-sm-8">
+                <input id="description" name="description" type="text" value="" placeholder="Descrizione" class="form-control"
+                [(ngModel)]="product.description" name="description" #description="ngModel">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="employee" class="col-sm-4 col-form-label">Impiegato <sup class="text-danger">* </sup></label>
+              <div class="col-sm-8">
+                <div class="dropdown bootstrap-select show-tick form-control">
+                  <select [(ngModel)]="product.employee" id="employee" name="employee" class="selectpicker form-control" data-actions-box="true" data-live-search="true" data-show-tick="true" data-style="" data-icon-base="fa" data-tick-icon="fa-check" required>
+                    @for (e of employees | async; track e) {
+                      <option [ngValue]="e">{{ e }}</option>
+                    }
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+        [disabled]="!f.valid" (click)="save()">Aggiungi</button>
+      </div>
+    </div>
+  </div>
+</div>
