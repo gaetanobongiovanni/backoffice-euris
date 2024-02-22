@@ -1,6 +1,7 @@
 # BackofficeEuris
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
+node v20.11.1, npm 10.2.4
 
 ## Development server
 
